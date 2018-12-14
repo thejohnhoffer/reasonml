@@ -1,7 +1,6 @@
 {
   "name": "reasonml",
-  "description":
-    "Exercism exercises in ReasonML to teach the language, BuckleScript and JS ecosystem support.",
+  "description": "Exercism exercises in ReasonML to teach the language, BuckleScript and JS ecosystem support.",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/jthegedus/reasonml.git",
@@ -11,14 +10,15 @@
     "clean": "bsb -clean-world",
     "build": "bsb -make-world",
     "watch": "bsb -make-world -w",
-    "test": "jest"
+    "test": "jest --watchAll --env=node"
   },
-  "keywords": ["BuckleScript"],
+  "keywords": [
+    "BuckleScript"
+  ],
   "devDependencies": {
     "@glennsl/bs-jest": "^0.3.2",
-    "bs-platform": "^2.1.0",
-    "reason-cli":
-      "https://github.com/reasonml/reason-cli/archive/3.0.4-bin-linux.tar.gz"
+    "bs-platform": "^4.0.11",
+    "reason-cli": "https://github.com/reasonml/reason-cli/archive/3.0.4-bin-linux.tar.gz"
   },
   "dependencies": {},
   "jest": {
