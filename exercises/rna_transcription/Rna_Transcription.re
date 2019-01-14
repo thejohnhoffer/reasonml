@@ -1,41 +1,19 @@
-/** Part 1 - Char only solution */
-let toRnaFromChar = (rnaChar: char) : char =>
-  switch rnaChar {
+let toRnaFromChar =
+  fun
+  | 'A' => 'U'
   | 'C' => 'G'
   | 'G' => 'C'
-  | 'A' => 'U'
   | 'T' => 'A'
-  | _ => '#'
-  };
+  |  _  => 'x';
 
-/** Part 2 - String only solution
- *
- * loop each char in word
- * check letter and perform transcription via toRnaFromChar
- */
-let toRnaFromString = (rna: string) =>
-  String.map(charAt => toRnaFromChar(charAt), rna);
+let toRnaFromString = String.map(toRnaFromChar);
+let hasNoLower = str => String.uppercase(str) == str;
+let validDna = str => str |> toRnaFromString |> hasNoLower;
+let toRna = str => if (validDna(str)) toRnaFromString(str) else "Invalid input";
 
-/** Part 3 - Validation */
-/** Valid Chars
-   */
-let validChars = "ACGTU";
-
-/** Input validation
-   *
-   */
-let validRna = (rna: string) : bool => {
-  let rna = String.capitalize(rna);
-  let valid = ref(true);
-  let x = ref(0);
-  while (valid^ && x^ < String.length(rna)) {
-    valid := String.contains(validChars, rna.[x^]);
-    x := x^ + 1; /* increment counter */
-  };
-  let msg = valid^ ? "Valid" : "Invalid";
-  valid^;
-};
-
-/** Part 4 - String with validation */
-let toRna = (rna: string) =>
-  validRna(rna) ? toRnaFromString(rna) : "Invalid input";
+/* Tests pass with `let validRna = validDna`, but that's incorrect*/
+let validRna = str => str |> String.map({
+  fun
+  | 'A' | 'C' | 'G' | 'U' => ' '
+  |  _  => 'x';
+}) |> hasNoLower;
